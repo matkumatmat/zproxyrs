@@ -1,4 +1,4 @@
-# zpl-bridge
+# zproxyrs
 
 Agnostic HTTP → raw-TCP print proxy for Zebra ZPL printers.
 
@@ -9,7 +9,7 @@ drivers, no SDK, no client-side TCP needed.
 ```mermaid
 flowchart LR
     User["user: curl / python / any HTTP client"]
-    Bridge["zpl-bridge :4331"]
+    Bridge["zproxyrs :4331"]
     Printer["Zebra :9100"]
 
     User -->|"POST /print<br/>(text/plain or JSON)"| Bridge
@@ -39,7 +39,7 @@ cp .env.example .env
 # edit .env → ZPL_IP=<printer-ip> ZPL_PORT=9100
 
 cargo run
-# starting zpl-bridge printer="192.168.19.5:9100" bind="127.0.0.1:4331" docs="/docs"
+# starting zproxyrs printer="192.168.19.5:9100" bind="127.0.0.1:4331" docs="/docs"
 ```
 
 Print a label:
@@ -140,7 +140,7 @@ Probe only (no print). `200` = probe answered — inspect `ready`/`faults`.
 ### `GET /health`
 
 ```json
-{ "status": "ok", "service": "zpl-bridge" }
+{ "status": "ok", "service": "zproxyrs" }
 ```
 
 ## How verification works

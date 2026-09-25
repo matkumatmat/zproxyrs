@@ -9,7 +9,7 @@ use crate::status::PrinterStatus;
 #[derive(OpenApi)]
 #[openapi(
     info(
-        title = "zpl-bridge",
+        title = "zproxyrs",
         version = "0.1.0",
         description = "Agnostic ZPL bridge: POST raw text -> raw TCP :9100 -> Zebra printer, with ~HS status verification."
     ),

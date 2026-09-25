@@ -1,4 +1,4 @@
-//! zpl-bridge: POST raw text -> TCP -> ZPL printer (+ ~HS verify + OpenAPI).
+//! zproxyrs: POST raw text -> TCP -> ZPL printer (+ ~HS verify + OpenAPI).
 //! Wiring only; all logic lives in `lib.rs` modules.
 
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
@@ -36,7 +36,7 @@ async fn main() {
         printer = format!("{}:{}", cfg.printer_host, cfg.printer_port),
         bind,
         docs = "/docs",
-        "starting zpl-bridge"
+        "starting zproxyrs"
     );
 
     let state = AppState::from_config(&cfg);

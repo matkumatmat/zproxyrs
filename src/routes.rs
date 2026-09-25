@@ -115,7 +115,7 @@ pub struct ErrorResponse {
 pub struct HealthResponse {
     #[schema(example = "ok")]
     pub status: String,
-    #[schema(example = "zpl-bridge")]
+    #[schema(example = "zproxyrs")]
     pub service: String,
 }
 

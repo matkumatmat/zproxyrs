@@ -1,4 +1,4 @@
-//! Standalone unit tests for zpl-bridge (Rule #4: outside `src/`, Rule #5).
+//! Standalone unit tests for zproxyrs (Rule #4: outside `src/`, Rule #5).
 //! Run with: `cargo test`
 //! No printer or server required except where a fake TCP listener is spun up.
 
@@ -411,5 +411,5 @@ fn openapi_spec_covers_bridge() {
     for path in ["/health", "/status", "/print"] {
         assert!(json.contains(path), "spec missing {path}");
     }
-    assert!(json.contains("zpl-bridge"));
+    assert!(json.contains("zproxyrs"));
 }
