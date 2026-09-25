@@ -1,0 +1,5 @@
+/target
+.env
+AGENTS.md
+example_*
+send_*
