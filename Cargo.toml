@@ -1,14 +1,15 @@
 [package]
-name = "zpl-bridge"
+name = "zproxyrs"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 
 [lib]
-name = "zpl_bridge"
+name = "zproxyrs"
 path = "src/lib.rs"
 
 [[bin]]
-name = "zpl-bridge"
+name = "zproxyrs"
 path = "src/main.rs"
 
 [dependencies]

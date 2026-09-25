@@ -3,10 +3,10 @@
 
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
-use zpl_bridge::config::ConfigFactory;
-use zpl_bridge::constants::DEFAULT_RUST_LOG;
-use zpl_bridge::enums::{EnvKey, StrFactory};
-use zpl_bridge::routes::{AppState, RouterFactory};
+use zproxyrs::config::ConfigFactory;
+use zproxyrs::constants::DEFAULT_RUST_LOG;
+use zproxyrs::enums::{EnvKey, StrFactory};
+use zproxyrs::routes::{AppState, RouterFactory};
 
 #[tokio::main]
 async fn main() {

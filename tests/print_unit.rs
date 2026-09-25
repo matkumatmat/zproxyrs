@@ -8,17 +8,17 @@ use axum::http::HeaderMap;
 use tokio::io::AsyncReadExt;
 use tokio::net::TcpListener;
 
-use zpl_bridge::config::{
+use zproxyrs::config::{
     AppConfig, ConfigFactory, ConfigLoader, read_env_key, read_env_or, read_env_or_parsed,
 };
-use zpl_bridge::constants::*;
-use zpl_bridge::docs::DocsFactory;
-use zpl_bridge::enums::{EnumStr, EnvKey, JsonField, LogEvent, PrintOutcome, Route, StrFactory};
-use zpl_bridge::printer::{
+use zproxyrs::constants::*;
+use zproxyrs::docs::DocsFactory;
+use zproxyrs::enums::{EnumStr, EnvKey, JsonField, LogEvent, PrintOutcome, Route, StrFactory};
+use zproxyrs::printer::{
     PrinterError, PrinterFactory, PrinterKind, PrinterSender, send_payload, validate_payload,
 };
-use zpl_bridge::routes::{AppState, RouterFactory, extract_payload, preview_of};
-use zpl_bridge::status::{PrinterFault, StatusFactory};
+use zproxyrs::routes::{AppState, RouterFactory, extract_payload, preview_of};
+use zproxyrs::status::{PrinterFault, StatusFactory};
 
 // ---------- helpers ----------
 
@@ -121,17 +121,17 @@ fn config_factory_falls_back_on_bad_port() {
 #[test]
 fn env_helpers_use_pattern_matching() {
     // SAFETY: single-threaded manipulation for test only.
-    unsafe { std::env::remove_var("ZPL_BRIDGE_TEST_KEY") };
-    assert_eq!(read_env_or("ZPL_BRIDGE_TEST_KEY", "fallback"), "fallback");
-    unsafe { std::env::set_var("ZPL_BRIDGE_TEST_KEY", "hello") };
-    assert_eq!(read_env_or("ZPL_BRIDGE_TEST_KEY", "fallback"), "hello");
-    unsafe { std::env::set_var("ZPL_BRIDGE_TEST_PORT", "oops") };
-    assert_eq!(read_env_or_parsed("ZPL_BRIDGE_TEST_PORT", 1234u16), 1234u16);
-    unsafe { std::env::set_var("ZPL_BRIDGE_TEST_PORT", "4321") };
-    assert_eq!(read_env_or_parsed("ZPL_BRIDGE_TEST_PORT", 1234u16), 4321u16);
+    unsafe { std::env::remove_var("zproxyrs_TEST_KEY") };
+    assert_eq!(read_env_or("zproxyrs_TEST_KEY", "fallback"), "fallback");
+    unsafe { std::env::set_var("zproxyrs_TEST_KEY", "hello") };
+    assert_eq!(read_env_or("zproxyrs_TEST_KEY", "fallback"), "hello");
+    unsafe { std::env::set_var("zproxyrs_TEST_PORT", "oops") };
+    assert_eq!(read_env_or_parsed("zproxyrs_TEST_PORT", 1234u16), 1234u16);
+    unsafe { std::env::set_var("zproxyrs_TEST_PORT", "4321") };
+    assert_eq!(read_env_or_parsed("zproxyrs_TEST_PORT", 1234u16), 4321u16);
     unsafe {
-        std::env::remove_var("ZPL_BRIDGE_TEST_KEY");
-        std::env::remove_var("ZPL_BRIDGE_TEST_PORT");
+        std::env::remove_var("zproxyrs_TEST_KEY");
+        std::env::remove_var("zproxyrs_TEST_PORT");
     }
 }
 
@@ -344,9 +344,9 @@ fn print_outcome_maps_via_match() {
 
 #[test]
 fn env_key_reader_matches_loader() {
-    unsafe { std::env::set_var("ZPL_BRIDGE_ENUM_TEST", "v1") };
+    unsafe { std::env::set_var("zproxyrs_ENUM_TEST", "v1") };
     assert_eq!(read_env_key(EnvKey::ZplIp, "fb").len() >= 2, true);
-    unsafe { std::env::remove_var("ZPL_BRIDGE_ENUM_TEST") };
+    unsafe { std::env::remove_var("zproxyrs_ENUM_TEST") };
 }
 
 // ---------- status: ~HS parsing + faults + outcome ----------

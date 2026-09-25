@@ -11,8 +11,8 @@ use std::time::Duration;
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
 
-use zpl_bridge::constants::*;
-use zpl_bridge::routes::{AppState, RouterFactory};
+use zproxyrs::constants::*;
+use zproxyrs::routes::{AppState, RouterFactory};
 
 /// Ready-state `~HS` reply (all flags clear, tear-off mode).
 pub const FAKE_HS_READY: &str = concat!(
